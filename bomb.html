@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bomb Defusal Pro</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle, #0a0a0a, #000);
+    font-family: Arial;
+    color: white;
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    margin-top: 20px;
+    color: red;
+    text-shadow: 0 0 20px red;
+}
+
+/* Bomb panel */
+.bombBox {
+    width: 420px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #111;
+    border-radius: 15px;
+    box-shadow: 0 0 30px red;
+    position: relative;
+}
+
+/* Timer */
+#timer {
+    font-size: 45px;
+    margin-bottom: 25px;
+    color: yellow;
+    text-shadow: 0 0 10px yellow;
+}
+
+/* Wires */
+.wire {
+    width: 85%;
+    padding: 16px;
+    margin: 15px auto;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.red { background: crimson; }
+.blue { background: royalblue; }
+.green { background: seagreen; }
+
+.wire:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 20px white;
+}
+
+/* Result screen overlay */
+#resultScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+/* Defused style */
+.defused {
+    background: radial-gradient(circle, #003300, black);
+    color: lime;
+    text-shadow: 0 0 25px lime;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Explosion style */
+.explode {
+    background: radial-gradient(circle, #330000, black);
+    color: red;
+    text-shadow: 0 0 25px red;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💣 DEFUSE THE BOMB</h1>
+
+<div class="bombBox">
+
+    <div id="timer">12</div>
+
+    <div class="wire red" onclick="cutWire('red')">Cut Red Wire</div>
+    <div class="wire blue" onclick="cutWire('blue')">Cut Blue Wire</div>
+    <div class="wire green" onclick="cutWire('green')">Cut Green Wire</div>
+
+</div>
+
+<div id="resultScreen"></div>
+
+<script>
+let safeWire = ["red","blue","green"][Math.floor(Math.random()*3)];
+let time = 12;
+let gameOver = false;
+
+let countdown = setInterval(() => {
+    if (gameOver) return;
+
+    time--;
+    document.getElementById("timer").innerText = time;
+
+    if (time <= 0) {
+        showExplosion("💥 BOOM!");
+    }
+}, 1000);
+
+function cutWire(color) {
+    if (gameOver) return;
+
+    if (color === safeWire) {
+        showDefused("🎉 BOMB DEFUSED");
+    } else {
+        showExplosion("💥 WRONG WIRE");
+    }
+}
+
+function showDefused(text) {
+    gameOver = true;
+    clearInterval(countdown);
+
+    let screen = document.getElementById("resultScreen");
+    screen.style.display = "flex";
+    screen.className = "defused";
+    screen.innerText = text;
+}
+
+function showExplosion(text) {
+    gameOver = true;
+    clearInterval(countdown);
+
+    let screen = document.getElementById("resultScreen");
+    screen.style.display = "flex";
+    screen.className = "explode";
+    screen.innerText = text;
+}
+</script>
+
+</body>
+</html>
