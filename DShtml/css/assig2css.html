@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+</head>
+<style>
+    #bigbox{
+        display: grid;
+        grid-template-columns:170px 170px 170px;
+        grid-template-rows:250px 250px;
+    }
+    .box1{
+        grid-template-columns:first-line/2;
+        grid-template-rows:first-line/3;       
+    }
+    .box1{
+        grid-template-columns:first-line/2;
+        grid-template-rows:first-line/3;       
+    }
+    .box2{
+        grid-template-columns:2/3;
+        grid-template-rows:1/2;       
+    }
+    .box3{
+        grid-template-columns:3/4;
+        grid-template-rows:1/2;       
+    }
+    .box4{
+        grid-column:2/4;
+        grid-row:2/3;       
+    }
+</style>
+<body>
+<div  id="bigbox"style="border:5px solid black;width:550px; height:500px;margin:10px">
+    <div class="box1"style="border:2px solid red; width:160px; height:450px;margin:20px"></div>
+    <div class="box2" style="border:2px solid red;width:150px;height:160px;margin:30px;"></div>
+    <div class="box3" style="border:2px solid red;width:150px;height:160px;margin:30px;"></div>
+    <div class="box4" style="border:2px solid red;width:320px;height:160px;margin:30px;"></div>
+</div>
+</body>
+</html>
