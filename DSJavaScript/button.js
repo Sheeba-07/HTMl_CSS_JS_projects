@@ -1,6 +1,4 @@
-//const btn=document.getElementById("btn");
-//button.addEventListener("click",function(){alert("button clicked")})
-//btn.addEventListener("click",function(){document.body.style.backgroundColor="pink";});
+
 //console.log(17*5);
 // function greet(){
 //   console.log("hello");
@@ -16,8 +14,32 @@
 // }
 // let result=multiply(3,4,2);
 // console.log(result);
-const btn=document.getElementById("btn");
-let count=0;
-btn.addEventListener("click",function(){count++;
-  document.getElementById("count").innerText=count;
+
+// COUNT BUTTON
+const btnn = document.getElementById("btnn");
+let count = 0;
+
+btnn.addEventListener("click", function () {
+    count++;
+    document.getElementById("count").innerText = count;
+});
+
+
+// CLICK BUTTON EVENTS
+const btn = document.getElementById("btn");
+
+// Normal Click Alert
+btn.addEventListener("click", function () {
+    alert("Button clicked");
+});
+
+// Change Background Color
+btn.addEventListener("click", function () {
+    document.body.style.backgroundColor = "pink";
+});
+
+
+// DOUBLE CLICK EVENT
+btn.addEventListener("dblclick", function () {
+    alert("Double click detected!");
 });
