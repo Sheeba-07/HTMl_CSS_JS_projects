@@ -63,32 +63,33 @@ function getdata(id){
   return new Promise((resolve,reject)=>{           //both promise and async await
     setTimeout(()=>{
       console.log("data from api");
-        resolve("success");
+        // resolve("success");
+         reject("failed");
       },3000);
   });
 }
-// let p1=getdata(1);                           //pure promise
-// p1.then(()=>{
-//   console.log("p1 fullfilled");
-//   return getdata(2);
-// }).then(()=>{
-//   console.log("p2 fullfilled");
-//   return getdata(3);
-// }).then(()=>{
-//   console.log("p3 fullfilled");
-//   return getdata(4);
-// }).catch((err)=>{
-//   console.log({err});
-// })
+let p1=getdata(1);                             //pure promise
+p1.then(()=>{
+  console.log("p1 fullfilled");
+  return getdata(2);
+}).then(()=>{
+  console.log("p2 fullfilled");
+  return getdata(3);
+}).then(()=>{
+  console.log("p3 fullfilled");
+  return getdata(4);
+}).catch((err)=>{
+  console.log({err});
+})
 
-async function run(){
-  await getdata(1);
-  await getdata(2);                            //async await
-  await getdata(3);
+// async function run(){
+//   await getdata(1);
+//   await getdata(2);                            //async await
+//   await getdata(3);
  
-}
-run();
-console.log("this is at end");
+// }
+// run();
+// console.log("this is at end");
 
 
 
