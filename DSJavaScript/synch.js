@@ -28,16 +28,67 @@
 // getdata(1);
 // getdata(2);
 
-function getdata(id,getnextdata){
-  setTimeout(()=>{
-    console.log("data",id);
-    if(getnextdata){
-      getnextdata();
+// function getdata(id,getnextdata){
+//   setTimeout(()=>{
+//     console.log("data",id);
+//     if(getnextdata){
+//       getnextdata();
 
-    } 
-  },2000);
+//     } 
+//   },2000);
+// }
+// getdata(1,()=>{getdata(2)})
+
+// callback l and call back pyramid
+// function getdata(id,getnextdata){
+//   setTimeout(()=>{
+//     console.log("data",id);
+//     if(getnextdata){
+//       getnextdata();
+
+//     } 
+//   },2000);
+// }
+// getdata(
+//   1,()=>getdata(
+//   2,()=>getdata(
+//     3,()=>getdata(4))
+//     )
+//   );
+
+
+   
+function getdata(id){
+  console.log("Promise creating now");
+  return new Promise((resolve,reject)=>{           //both promise and async await
+    setTimeout(()=>{
+      console.log("data from api");
+        resolve("success");
+      },3000);
+  });
 }
-getdata(1,()=>{getdata(2)})
+// let p1=getdata(1);                           //pure promise
+// p1.then(()=>{
+//   console.log("p1 fullfilled");
+//   return getdata(2);
+// }).then(()=>{
+//   console.log("p2 fullfilled");
+//   return getdata(3);
+// }).then(()=>{
+//   console.log("p3 fullfilled");
+//   return getdata(4);
+// }).catch((err)=>{
+//   console.log({err});
+// })
+
+async function run(){
+  await getdata(1);
+  await getdata(2);                            //async await
+  await getdata(3);
+ 
+}
+run();
+console.log("this is at end");
 
 
 
